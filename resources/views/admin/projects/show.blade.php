@@ -40,13 +40,7 @@
                         <span class="badge text-bg-info text-uppercase">{{ $project->type->name }}</span>
                     </div>
                 @endif
-                {{-- @if ($project->technologies)
-                    <div class="text-center">
-                        @foreach ($project->technologies as $technology)
-                            <span class="badge text-bg-warning text-uppercase">{{ $technology->name }}</span>
-                        @endforeach
-                    </div>
-                @endif --}}
+
                 @forelse ($project->technologies as $technology)
                     <div class="d-inline-block">
                         <span class="badge text-bg-warning text-uppercase">{{ $technology->name }}</span>
