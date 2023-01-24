@@ -36,6 +36,13 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-3">
+                <p class="form-label" for="type">TECNOLOGIE:</p>
+                @foreach ($technologies as $technology)
+                    <input @if(in_array($technology->id, old('technology', []))) checked @endif id="{{ $technology->slug }}" name="technology[]" value="{{ $technology->id}}" type="checkbox" >
+                    <label  for="{{ $technology->slug }}">{{ $technology->name}}</label>
+                @endforeach
+            </div>
 
             <div class="mb-3">
                 <label for="client_name" class="form-label @error('client_name') text-danger @enderror">CLIENT *</label>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
@@ -52,7 +53,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -66,7 +68,6 @@ class ProjectController extends Controller
         $project = $request->all();
         if(array_key_exists('cover_image', $project)) {
             $project['image_original_name'] = $request->file('cover_image')->getClientOriginalName();
-
             $project['cover_image'] = Storage::put('uploads', $project['cover_image']);
         }
 
@@ -74,6 +75,10 @@ class ProjectController extends Controller
         $project['slug'] = Project::generator_slug($project['name']);
         $new_project->fill($project);
         $new_project->save();
+
+        if(array_key_exists('technology', $project)){
+            $new_project->technologies()->attach($project['technology']);
+        }
 
         return redirect()->route('admin.project.show', $new_project)->with('messages', 'POST AGGIUNTO CON SUCCESSO');
     }

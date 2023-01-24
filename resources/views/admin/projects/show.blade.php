@@ -33,10 +33,26 @@
                 <p class="card-text">{{ $project->client_name }}</p>
                 <p class="card-text"> DESCRIZIONE: <br> {{ $project->summary }}</p>
                 @if ($project->type)
-                    <div class="text-center">
+                    <div class="text-center my-3">
+                        <span>
+                            TIPO:
+                        </span>
                         <span class="badge text-bg-info text-uppercase">{{ $project->type->name }}</span>
                     </div>
                 @endif
+                {{-- @if ($project->technologies)
+                    <div class="text-center">
+                        @foreach ($project->technologies as $technology)
+                            <span class="badge text-bg-warning text-uppercase">{{ $technology->name }}</span>
+                        @endforeach
+                    </div>
+                @endif --}}
+                @forelse ($project->technologies as $technology)
+                    <div class="d-inline-block">
+                        <span class="badge text-bg-warning text-uppercase">{{ $technology->name }}</span>
+                    </div>
+                @empty
+                @endforelse
             </div>
         </div>
     </div>
