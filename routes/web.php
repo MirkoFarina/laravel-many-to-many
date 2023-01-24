@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\ProfileController;
@@ -20,6 +21,7 @@ Route::middleware(['auth','verified'])
         Route::resource('project', ProjectController::class);
         Route::get('/groupby/{column}/{direction}',[ProjectController::class, 'groupby'])->name('project.groupby');
         Route::resource('type', TypeController::class)->except('create', 'edit', 'show');
+        Route::resource('technology', TechnologyController::class)->except('create', 'edit', 'show');
 });
 
 Route::middleware('auth')->group(function () {

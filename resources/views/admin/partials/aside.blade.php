@@ -27,9 +27,15 @@
                     </ul>
                 </li>
                 <li class="ps-3">
-                    <a href=" {{ route('admin.type.index') }} ">
+                    <a class="{{Route::CurrentRouteName() === 'admin.type.index' ? 'active' : ''}}" href=" {{ route('admin.type.index') }} ">
                         <i class="fa-solid fa-layer-group"></i>
                         TYPES
+                    </a>
+                </li>
+                <li class="ps-3">
+                    <a class="{{Route::CurrentRouteName() === 'admin.technology.index' ? 'active' : ''}}" href=" {{ route('admin.technology.index') }} ">
+                        <i class="fa-solid fa-bookmark"></i>
+                        TECNOLOGIE
                     </a>
                 </li>
             </ul>
