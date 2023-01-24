@@ -1,0 +1,31 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Project;
+use App\Models\Technology;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class ProjectTechnologyTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // $projects = Project::all();
+        // foreach($projects as $project) {
+        //     $technology = Technology::inRandomOrder()->first()->id;
+        //     $project->technologies()->attach($technology);
+        // }
+
+        for ($i=0; $i < 200; $i++) {
+            $project = Project::inRandomOrder()->first();
+            $technology = Technology::inRandomOrder()->first()->id;
+            $project->technologies()->attach($technology);
+        }
+    }
+}
