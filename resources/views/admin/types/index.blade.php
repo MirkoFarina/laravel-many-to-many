@@ -32,18 +32,18 @@
                 <tbody>
                     @forelse ($types as $type)
                         <tr>
-                            <td>
+                            <td class="d-flex">
                                 <form action=" {{ route('admin.type.update', $type) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <input class="border-0 bg-transparent text-white" type="text" name="name" value="{{ $type->name }}">
                                     <button type="submit" class="btn btn-warning me-3">UPDATE</button>
+                                </form>
                                     @include('admin.partials.form-delete', [
                                     'title' => $type->name,
                                     'route' => 'admin.type.destroy',
                                     'element' => $type,
                                 ])
-                                </form>
                             </td>
                             <td class="text-center"> <a
                                     href="{{ route('admin.projects.projects-type') }}">{{ count($type->projects) }}</a>
